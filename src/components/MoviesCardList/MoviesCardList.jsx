@@ -26,73 +26,73 @@ const MoviesCardList = () => {
             <MoviesCard
               image={coverOne}
               title="33 слова о дизайне"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverTwo}
               title="Киноальманах «100 лет дизайна»"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={true}
             />
             <MoviesCard
               image={coverThree}
               title="В погоне за Бенкси"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverFour}
               title="Баския: Взрыв реальности"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverFive}
               title="Бег это свобода"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverSix}
               title="Книготорговцы"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={true}
             />
             <MoviesCard
               image={coverSeven}
               title="Когда я думаю о Германии ночью"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverEight}
               title="Gimme Danger: История Игги и The Stooges"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverNine}
               title="Дженис: Маленькая девочка грустит"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverTen}
               title="Соберись перед прыжком"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={true}
             />
             <MoviesCard
               image={coverEleven}
               title="Пи Джей Харви: A dog called money"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
             <MoviesCard
               image={coverTwelve}
               title="По волнам: Искусство звука в кино"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={false}
             />
           </ul>
@@ -106,19 +106,19 @@ const MoviesCardList = () => {
             <MoviesCard
               image={coverTwo}
               title="Киноальманах «100 лет дизайна»"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={true}
             />
             <MoviesCard
               image={coverSix}
               title="Книготорговцы"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={true}
             />
             <MoviesCard
               image={coverTen}
               title="Соберись перед прыжком"
-              time="1ч 17м"
+              time="54м 37с"
               isSave={true}
             />
           </ul>
