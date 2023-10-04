@@ -1,1 +1,3 @@
-# movies-explorer-frontend
+# Проект: movies-explorer-frontend
+
+Макет - [light 4]()

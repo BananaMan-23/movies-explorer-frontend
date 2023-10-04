@@ -1,0 +1,45 @@
+.promo {
+  min-height: 524px;
+  background: url(../../images/pic-landing-logo.png) #f3c1f8;
+  background-repeat: no-repeat;
+  background-size: 320px 320px;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo__title {
+  margin: 0;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.16;
+  max-width: 730px;
+  padding-bottom: 35px;
+}
+
+@media screen and (max-width: 1279px) {
+  .promo {
+    min-height: calc(784px + (524 - 784) * (100vw - 768px) / (1279 - 768));
+  }
+
+  .promo__title {
+    padding-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .promo {
+    min-height: calc(570px + (784 - 570) * (100vw - 320px) / (767 - 320));
+    background-size: calc(248px + (320 - 248) * (100vw - 320px) / (767 - 320))
+      calc(248px + (320 - 248) * (100vw - 320px) / (767 - 320));
+  }
+
+  .promo__title {
+    font-size: calc(29px + (50 - 29) * (100vw - 320px) / (767 - 320));
+    line-height: 1.26;
+    max-width: calc(300px + (730 - 300) * (100vw - 320px) / (767 - 320));
+    padding-bottom: 37px;
+  }
+}
