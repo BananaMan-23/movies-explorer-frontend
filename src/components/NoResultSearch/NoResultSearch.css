@@ -1,0 +1,28 @@
+.no-result {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 454px);
+  justify-content: center;
+  align-items: center;
+}
+
+.no-result__heading {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 1279px) {
+  .no-result {
+    min-height: calc(100vh - 496px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .no-result {
+    min-height: calc(100vh - 582px);
+  }
+}

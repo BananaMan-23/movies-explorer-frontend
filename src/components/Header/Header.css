@@ -1,0 +1,240 @@
+.header_type_main {
+  background-color: #f3c1f8;
+}
+
+.header__container {
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 70px;
+  align-items: center;
+}
+
+.header__logo {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.header__list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+}
+
+.header__list_type_auth {
+  gap: 20px;
+  align-items: center;
+}
+
+.header__link {
+  text-decoration: none;
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #000;
+  transition: opacity 0.3s;
+}
+
+.header__link_type_auth {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.header__link_active {
+  font-weight: 500;
+}
+
+.header__link:hover {
+  opacity: 0.7;
+}
+
+.header__link_type_login {
+  padding: 8px 20px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 3px;
+  transition: opacity 0.3s;
+}
+
+.header__link_type_login:hover {
+  opacity: 0.8;
+}
+
+.header__container-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-left: 30px;
+}
+
+.header__container-link_type_mobile {
+  padding-left: 0;
+  margin: 0 auto;
+  margin-top: auto;
+  padding-bottom: 92px;
+}
+
+.header__icon-profile {
+  background-image: url(../../images/profile-icon.svg);
+  background-size: 10.383px 10.669px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(249, 249, 249, 1);
+  border-radius: 6px;
+}
+
+.header__icon-profile_type_main {
+  background-image: url(../../images/icon-profile-pink.svg);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.header__nav-mobile {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: flex-end;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.2s, opacity 0.2s linear;
+}
+
+.header__nav-mobile_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.header__burger {
+  display: none;
+  border: none;
+  background-color: transparent;
+  transition: opacity 0.3s;
+  width: 39px;
+  height: 38px;
+  background-image: url(../../images/icon-main.svg);
+  background-repeat: no-repeat;
+  background-size: 39px 38px;
+  background-position: center;
+}
+
+.header__burger:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.header__container-mobile {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 520px;
+}
+
+.header__burger-exit {
+  border: none;
+  background-color: transparent;
+  transition: opacity 0.3s;
+  width: 32px;
+  height: 32px;
+  background-image: url(../../images/exit.svg);
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  background-position: center;
+  align-self: flex-end;
+  margin: 22.4px 22.4px 105.44px;
+}
+
+.header__burger-exit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.header__list-mobile {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+@media screen and (max-width: 1279px) {
+  .header__container {
+    padding: 18px calc(30px + (70 - 30) * (100vw - 768px) / (1279 - 768));
+  }
+
+  .header__nav-desktop {
+    display: none;
+  }
+
+  .header__burger {
+    display: flex;
+  }
+
+  .header__link_type_auth {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .header__link_type_profile {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .header__link_active {
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__container {
+    padding: 18px calc(14px + (30 - 14) * (100vw - 320px) / (767 - 320));
+  }
+
+  .header__list {
+    gap: calc(14px + (30 - 14) * (100vw - 320px) / (767 - 320));
+  }
+
+  .header__link {
+    font-size: calc(10px + (12 - 10) * (100vw - 320px) / (767 - 320));
+  }
+
+  .header__link_type_login {
+    padding: calc(5px + (8 - 5) * (100vw - 320px) / (767 - 320))
+      calc(12px + (20 - 12) * (100vw - 320px) / (767 - 320));
+  }
+
+  .header__burger-exit {
+    margin: 13.4px 13.4px 98.44px;
+  }
+
+  .header__container-mobile {
+    width: calc(320px + (520 - 320) * (100vw - 320px) / (767 - 320));
+  }
+
+  .header__list-mobile {
+    gap: 26px;
+  }
+
+  .header__link_type_auth {
+    font-size: 18px;
+  }
+
+  .header__link_type_profile {
+    font-size: 14px;
+  }
+}
