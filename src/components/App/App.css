@@ -11,3 +11,19 @@
   min-height: 100vh;
 }
 
+.auth-form__input:focus,
+.search__input:focus,
+.profile__input:focus {
+  outline: 2px solid #f3c1f8;
+  box-shadow: 0 0 10px #f3c1f8;
+  border-radius: 5px;
+}
+
+.auth-form__input:active,
+.search__input:active,
+.profile__input:active {
+  outline: 2px solid #d67621;
+  box-shadow: 0 0 10px #d67621;
+  transition: 0.25s ease-in-out;
+  border-radius: 5px;
+}
