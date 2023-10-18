@@ -9,8 +9,6 @@ const Input = ({
   value,
   defaultValue,
   required,
-  minLength,
-  maxLength,
   disabled,
   tabIndex,
   onChange,
@@ -26,8 +24,8 @@ const Input = ({
         defaultValue={defaultValue}
         value={value}
         required={required}
-        minLength={minLength}
-        maxLength={maxLength}
+        minLength="2"
+        maxLength="30"
         disabled={disabled}
         onChange={onChange}
       />

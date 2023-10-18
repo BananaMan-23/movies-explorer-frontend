@@ -10,6 +10,7 @@
   font-size: 22px;
   font-weight: 400;
   line-height: 1.2;
+  letter-spacing: -1px;
 }
 
 .about-project__list {
@@ -31,6 +32,7 @@
   font-size: 20px;
   font-weight: 400;
   line-height: 1.2;
+  letter-spacing: -0.8px;
 }
 
 .about-project__about {

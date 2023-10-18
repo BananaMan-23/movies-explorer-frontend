@@ -14,7 +14,7 @@ const Header = ({ isLoggedIn }) => {
     >
       <div className="header__container">
         <Link className="header__link header__link_type_logo" to="/">
-          <img className="header__logo" src={logo} alt="logo"></img>
+          <img className="header__logo" src={logo} alt="Логотип"></img>
         </Link>
         {isLoggedIn ? (
           <Navigation />

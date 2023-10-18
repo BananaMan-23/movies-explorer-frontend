@@ -2,7 +2,7 @@ import Main from '../components/Main/Main';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-function MainPage({ isLoggedIn }) {
+const MainPage = ({ isLoggedIn }) => {
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
@@ -10,6 +10,6 @@ function MainPage({ isLoggedIn }) {
             <Footer />
         </>
     );
-}
+};
 
 export default MainPage;

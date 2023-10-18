@@ -1,6 +1,6 @@
 .promo {
   min-height: 524px;
-  background: url(../../images/pic-landing-logo.png) #f3c1f8;
+  background: url(../../images/landing-logo.svg) #f3c1f8;
   background-repeat: no-repeat;
   background-size: 320px 320px;
   background-position: center;
@@ -17,6 +17,7 @@
   line-height: 1.16;
   max-width: 730px;
   padding-bottom: 35px;
+  letter-spacing: -2px;
 }
 
 @media screen and (max-width: 1279px) {

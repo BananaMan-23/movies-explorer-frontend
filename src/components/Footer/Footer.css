@@ -60,7 +60,9 @@
   .footer {
     width: calc(300px + (708 - 300) * (100vw - 320px) / (767 - 320));
   }
+}
 
+@media screen and (max-width: 320px) {
   .footer__title {
     padding: 79px 0 21px;
     font-size: 12px;

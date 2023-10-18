@@ -1,0 +1,35 @@
+.result {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  flex-direction: column;
+  min-height: calc(100vh - 454px);
+  justify-content: center;
+  align-items: center;
+}
+
+.result__heading {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.result__heading_error {
+  font-size: 15px;
+  color: black;
+}
+
+@media screen and (max-width: 1279px) {
+  .result {
+    min-height: calc(100vh - 496px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .result {
+    min-height: calc(100vh - 582px);
+  }
+}

@@ -1,11 +1,9 @@
 import Login from '../components/Login/Login';
 
-function LoginPage({ setIsLoggedIn }) {
+const LoginPage = ({ handleLogin, status, setStatus, isLoading }) => {
     return (
-        <main>
-            <Login setIsLoggedIn={setIsLoggedIn} />
-        </main>
+        <Login handleLogin={handleLogin} status={status} setStatus={setStatus} isLoading={isLoading} />
     );
-}
+};
 
 export default LoginPage;
