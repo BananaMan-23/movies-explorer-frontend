@@ -5,7 +5,7 @@ export const HEADERS = {
 
 export const BASE_URL_MOVIES_API = 'https://api.nomoreparties.co';
 
-export const BASE_URL = 'http://api.diplom.films.nomoredomainsrocks.ru';
+export const BASE_URL = 'http:/localhost:3000';
 
 export const AMOUNT_CARDS_FOR_SMALL_SCREEN = 5;
 export const AMOUNT_CARDS_FOR_LARGE_SCREEN = 4;
