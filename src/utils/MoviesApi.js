@@ -1,4 +1,4 @@
-import { HEADERS, BASE_URL_MOVIES_API } from "./constants";
+import { BASE_URL_MOVIES_API, HEADERS } from "./constants";
 
 const checkResponse = (res) => {
     if (res.ok) {
