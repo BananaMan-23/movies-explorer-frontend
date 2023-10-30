@@ -2,8 +2,42 @@ import { useEffect } from "react";
 import AuthForm from "../AuthForm/AuthForm";
 import Input from "../Inputs/Input";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
+import {useAppContext} from "../../contexts/AppContext";
+import * as mainApi from "../../utils/MainApi";
+import {useNavigate} from "react-router-dom";
+import {SERVER_ERROR, SERVER_ERROR_TEXT, UNAUTHORIZED, UNAUTHORIZED_TEXT} from "../../utils/errors";
 
-const Login = ({ handleLogin, status, setStatus, isLoading }) => {
+const Login = () => {
+  const navigate = useNavigate();
+  const { status, setStatus, isLoading, setIsLoggedIn, setIsLoading,
+    setIsStatusPopupOpen, setIsStatus, setTextPopup} = useAppContext();
+
+  const handleLogin = (email, password) => {
+    setIsLoading(true);
+    mainApi
+      .login(email, password)
+      .then(() => {
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        navigate("/movies");
+        setIsLoading(false);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Успешный вход в аккаунт. Добро пожаловать!");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(`Возникла ошибка: ${err}`);
+        if (err === UNAUTHORIZED) {
+          setStatus(UNAUTHORIZED_TEXT);
+        } else if (err === SERVER_ERROR) {
+          setStatus(SERVER_ERROR_TEXT);
+        } else {
+          setStatus("При авторизации произошла ошибка.");
+        }
+      });
+  };
+
   const initialValues = {
     "auth-email": "",
     "auth-password": "",

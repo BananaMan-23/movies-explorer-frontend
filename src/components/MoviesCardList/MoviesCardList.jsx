@@ -1,25 +1,18 @@
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import "./MoviesCardList.css";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import Button from "../Buttons/Button";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import ResultSearch from "../ResultSearch/ResultSearch";
 import Preloader from "../Preloader/Preloader";
+// import * as mainApi from "../../utils/MainApi";
+import {useAppContext} from "../../contexts/AppContext";
 
-const MoviesCardList = ({
-  filteredMovies,
-  savedMovies,
-  filteredSavedMovies,
-  handleCreateMovie,
-  handleDeleteMovie,
-  isSearchMovies,
-  handleShowCards,
-  isSearchSavedMovies,
-  visibleCardsCount,
-  isLoadingSavedMovies,
-  setIsLoadingSavedMovies,
-  isLoadingMovies,
-}) => {
+const MoviesCardList = ({handleShowCards, visibleCardsCount}) => {
+  const {
+    isLoadingSavedMovies, filteredMovies, setIsLoadingSavedMovies,
+    filteredSavedMovies, savedMovies, isLoadingMovies, isSearchMovies, isSearchSavedMovies
+  } = useAppContext();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -52,21 +45,20 @@ const MoviesCardList = ({
           filteredMovies.length !== 0 &&
           localStorage.getItem("searchQueryFilteredMovies") !== "" ? (
             isLoading ? (
-              <Preloader />
+              <Preloader/>
             ) : (
               <section className="movies" aria-label="фильмы">
                 <ul className="movies__list">
                   {filteredMovies
                     .slice(0, visibleCardsCount)
-                    .map(({ id, ...props }) => (
+                    .map(({id, ...props}) => (
                       <MoviesCard
                         movie={props}
                         isSaveMovie={savedMoviesIds.includes(id)}
                         movieIdDb={findIdDb(id)}
                         movieId={id}
                         key={id}
-                        handleCreateMovie={handleCreateMovie}
-                        handleDeleteMovie={handleDeleteMovie}
+                        // handleDeleteMovie={handleDeleteMovie}
                       />
                     ))}
                 </ul>
@@ -82,28 +74,28 @@ const MoviesCardList = ({
             )
           ) : (
             isSearchMovies &&
-            (isLoading ? <Preloader /> : <ResultSearch isError={false} />)
+            (isLoading ? <Preloader/> : <ResultSearch isError={false}/>)
           )
         ) : (
-          <ResultSearch isError={true} />
+          <ResultSearch isError={true}/>
         ))}
 
       {location.pathname === "/saved-movies" &&
         (isLoadingMovies ? (
           filteredSavedMovies.length !== 0 ? (
             isLoadingSavedMovies ? (
-              <Preloader />
+              <Preloader/>
             ) : (
               <section className="movies" aria-label="сохраненные фильмы">
                 <ul className="movies__list">
-                  {filteredSavedMovies.map(({ movieId, _id, ...props }) => (
+                  {filteredSavedMovies.map(({movieId, _id, ...props}) => (
                     <MoviesCard
                       movie={props}
                       isSaveMovie={savedMoviesIds.includes(movieId)}
                       movieIdDb={_id}
                       movieId={movieId}
                       key={movieId}
-                      handleDeleteMovie={handleDeleteMovie}
+                      // handleDeleteMovie={handleDeleteMovie}
                     />
                   ))}
                 </ul>
@@ -112,13 +104,13 @@ const MoviesCardList = ({
           ) : (
             isSearchSavedMovies &&
             (isLoadingSavedMovies ? (
-              <Preloader />
+              <Preloader/>
             ) : (
-              <ResultSearch isError={false} />
+              <ResultSearch isError={false}/>
             ))
           )
         ) : (
-          <ResultSearch isError={true} />
+          <ResultSearch isError={true}/>
         ))}
     </>
   );

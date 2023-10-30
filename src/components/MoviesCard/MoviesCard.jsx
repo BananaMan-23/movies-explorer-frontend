@@ -3,17 +3,79 @@ import { useState } from "react";
 import { BASE_URL_MOVIES_API } from "../../utils/constants";
 import "./MoviesCard.css";
 import Button from "../Buttons/Button";
+import * as mainApi from "../../utils/MainApi";
+import {useAppContext} from "../../contexts/AppContext";
 
 const MoviesCard = ({
   movie,
   movieId,
-  handleCreateMovie,
-  handleDeleteMovie,
   isSaveMovie,
   movieIdDb,
 }) => {
+  const {setIsLoadingMovies, setSavedMovies, setFilteredSavedMovies} = useAppContext();
   const [isSave, setIsSave] = useState(isSaveMovie);
   const location = useLocation();
+
+  const handleDeleteMovie = (id, setIsSave) => {
+    setIsLoadingMovies(true);
+    mainApi
+      .deleteMovie(id)
+      .then(() => {
+        setIsLoadingMovies(true);
+        setIsSave(false);
+        setSavedMovies((prevState) =>
+          prevState.filter((item) => item._id !== id)
+        );
+        setFilteredSavedMovies((prevState) =>
+          prevState.filter((item) => item._id !== id)
+        );
+      })
+      .catch((err) => {
+        setIsLoadingMovies(false);
+        console.log(`Возникла ошибка: ${err}`);
+      });
+  };
+
+  const handleCreateMovie = (
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    nameRU,
+    nameEN,
+    movieId,
+    setIsSave
+  ) => {
+    setIsLoadingMovies(true);
+    mainApi
+      .createMovie(
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        thumbnail,
+        nameRU,
+        nameEN,
+        movieId
+      )
+      .then((newSavedMovie) => {
+        setIsLoadingMovies(true);
+        setIsSave(true);
+        setSavedMovies((prevState) => [...prevState, newSavedMovie]);
+        setFilteredSavedMovies((prevState) => [...prevState, newSavedMovie]);
+      })
+      .catch((err) => {
+        setIsLoadingMovies(false);
+        console.log(`Возникла ошибка: ${err}`);
+      });
+  };
 
   const handleClickSave = () => {
     handleCreateMovie(

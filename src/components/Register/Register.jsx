@@ -2,8 +2,74 @@ import { useEffect } from "react";
 import AuthForm from "../AuthForm/AuthForm";
 import Input from "../Inputs/Input";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
+import {useNavigate} from "react-router-dom";
+import {useAppContext} from "../../contexts/AppContext";
+import * as mainApi from "../../utils/MainApi";
+import {
+  CONFLICT,
+  CONFLICT_TEXT,
+  SERVER_ERROR,
+  SERVER_ERROR_TEXT,
+  UNAUTHORIZED,
+  UNAUTHORIZED_TEXT
+} from "../../utils/errors";
 
-const Register = ({ handleRegister, status, setStatus, isLoading }) => {
+const Register = () => {
+  const navigate = useNavigate();
+  const { status, setStatus, isLoading, setIsLoading, setIsLoggedIn,
+    setIsStatusPopupOpen, setIsStatus, setTextPopup } = useAppContext();
+
+  const handleLogin = (email, password) => {
+    setIsLoading(true);
+    mainApi
+      .login(email, password)
+      .then(() => {
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        navigate("/movies");
+        setIsLoading(false);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Успешный вход в аккаунт. Добро пожаловать!");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(`Возникла ошибка: ${err}`);
+        if (err === UNAUTHORIZED) {
+          setStatus(UNAUTHORIZED_TEXT);
+        } else if (err === SERVER_ERROR) {
+          setStatus(SERVER_ERROR_TEXT);
+        } else {
+          setStatus("При авторизации произошла ошибка.");
+        }
+      });
+  };
+
+  const handleRegister = (name, email, password) => {
+    setIsLoading(true);
+    setIsStatus(true);
+    mainApi
+      .register(name, email, password)
+      .then(() => {
+        handleLogin(email, password);
+        setIsLoading(false);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Регистрация прошла успешно. Добро пожаловать!");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(`Возникла ошибка: ${err}`);
+        if (err === CONFLICT) {
+          setStatus(CONFLICT_TEXT);
+        } else if (err === SERVER_ERROR) {
+          setStatus(SERVER_ERROR_TEXT);
+        } else {
+          setStatus("При регистрации пользователя произошла ошибка.");
+        }
+      });
+  };
+
   const initialValues = {
     "auth-name": "",
     "auth-email": "",

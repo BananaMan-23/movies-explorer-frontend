@@ -1,21 +1,58 @@
-import { useEffect, useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useEffect } from "react";
+import {useAppContext} from "../../contexts/AppContext";
 import useFormWithValidation from "../../hooks/useFormWithValidation";
 import "./Profile.css";
 import Form from "../Forms/Form";
 import Input from "../Inputs/Input";
 import Button from "../Buttons/Button";
+import * as mainApi from "../../utils/MainApi";
+import {CONFLICT, CONFLICT_TEXT, SERVER_ERROR, SERVER_ERROR_TEXT} from "../../utils/errors";
+import {useNavigate} from "react-router-dom";
 
-const Profile = ({
-  handleSignOut,
-  status,
-  setStatus,
-  isLoading,
-  handleUpdateUser,
-  isEdit,
-  setIsEdit,
-}) => {
-  const currentUser = useContext(CurrentUserContext);
+const Profile = () => {
+  const navigate = useNavigate();
+  const {setStatus, setIsEdit, currentUser, isEdit, status,
+    isLoading, setIsLoggedIn ,setCurrentUser, setIsLoading,
+    setIsStatusPopupOpen, setIsStatus, setTextPopup, setFilteredMovies, setIsSearchMovies} = useAppContext();
+  const handleUpdateUser = (name, email) => {
+    setIsLoading(true);
+    mainApi
+      .editUserInfo(name, email)
+      .then((userInfo) => {
+        setCurrentUser(userInfo);
+        setIsLoading(false);
+        setIsEdit(false);
+        setIsStatusPopupOpen(true);
+        setIsStatus(true);
+        setTextPopup("Данные успешно сохранены!");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(`Возникла ошибка: ${err}`);
+        if (err === CONFLICT) {
+          setStatus(CONFLICT_TEXT);
+        } else if (err === SERVER_ERROR) {
+          setStatus(SERVER_ERROR_TEXT);
+        } else {
+          setStatus("При обновлении профиля произошла ошибка.");
+        }
+      });
+  };
+
+  const handleSignOut = () => {
+    mainApi
+      .deleteCookies()
+      .then((res) => {
+        if (res) {
+          setIsLoggedIn(false);
+          navigate("/");
+          localStorage.clear();
+          setFilteredMovies([]);
+          setIsSearchMovies(false);
+        }
+      })
+      .catch((err) => console.log(`Возникла ошибка: ${err}`));
+  };
 
   useEffect(() => {
     return () => {

@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react";
-import {
-  DESKTOP,
-  AMOUNT_CARDS_FOR_DESKTOP,
-  ROW_OF_CARDS_FOR_DESKTOP,
-  AMOUNT_CARDS_FOR_TABLET,
-  ROW_OF_CARDS_FOR_TABLET,
-  MOBILE,
-  AMOUNT_CARDS_FOR_MOBILE,
-  ROW_OF_CARDS_FOR_MOBILE,
-} from "../../utils/constants.js";
+// import {
+//   DESKTOP,
+//   AMOUNT_CARDS_FOR_DESKTOP,
+//   ROW_OF_CARDS_FOR_DESKTOP,
+//   AMOUNT_CARDS_FOR_TABLET,
+//   ROW_OF_CARDS_FOR_TABLET,
+//   MOBILE,
+//   AMOUNT_CARDS_FOR_MOBILE,
+//   ROW_OF_CARDS_FOR_MOBILE,
+// } from "../../utils/constants.js";
 import useResizeWidth from "../../hooks/useResizeWidth";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { validateSearch, handleCheckboxChange } from "../../utils/filterData";
+import {useAppContext} from "../../contexts/AppContext";
 
-const Movies = ({
-  movies,
-  filteredMovies,
-  handleCreateMovie,
-  savedMovies,
-  handleDeleteMovie,
-  setFilteredMovies,
-  isSearchMovies,
-  setIsSearchMovies,
-  isLoading,
-  isLoadingMovies,
-}) => {
+const Movies = () => {
   const windowWidth = useResizeWidth();
+
+  const {
+    setIsSearchMovies, setFilteredMovies, movies, filteredMovies,
+  } = useAppContext();
 
   const [searchQueryFilteredMovies, setSearchQueryFilteredMovies] = useState(
     localStorage.getItem("searchQueryFilteredMovies") || ""
@@ -36,20 +30,6 @@ const Movies = ({
   );
   const [nameError, setNameError] = useState("");
   const isSaveInLocalStorage = true;
-
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     "searchQueryFilteredMovies",
-  //     searchQueryFilteredMovies
-  //   );
-  // }, [searchQueryFilteredMovies]);
-
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     "isShortFilmFilteredMovies",
-  //     JSON.stringify(!isCheckedFilteredMovies)
-  //   );
-  // }, [isCheckedFilteredMovies]);
 
   const handleSubmitSearchFilteredMovies = (e) => {
     e.preventDefault();
@@ -82,38 +62,38 @@ const Movies = ({
     );
   };
 
-  const isDesktop = windowWidth >= DESKTOP;
-  const isMobile = windowWidth <= MOBILE;
+  const isDesktop = windowWidth >= 1140;
+  const isMobile = windowWidth <= 480;
 
   const calculateCardCount = () => {
     if (isMobile) {
-      if (filteredMovies.length <= AMOUNT_CARDS_FOR_MOBILE) {
+      if (filteredMovies.length <= 5) {
         return filteredMovies.length;
       } else {
-        return AMOUNT_CARDS_FOR_MOBILE;
+        return 5;
       }
     } else if (isDesktop) {
-      if (filteredMovies.length <= AMOUNT_CARDS_FOR_DESKTOP) {
+      if (filteredMovies.length <= 12) {
         return filteredMovies.length;
       } else {
-        return AMOUNT_CARDS_FOR_DESKTOP;
+        return 12;
       }
     } else {
-      if (filteredMovies.length <= AMOUNT_CARDS_FOR_TABLET) {
+      if (filteredMovies.length <= 8) {
         return filteredMovies.length;
       } else {
-        return AMOUNT_CARDS_FOR_TABLET;
+        return 8;
       }
     }
   };
 
   const calculateCardCountStep = () => {
     if (isMobile) {
-      return ROW_OF_CARDS_FOR_MOBILE;
+      return 2;
     } else if (isDesktop) {
-      return ROW_OF_CARDS_FOR_DESKTOP;
+      return 3;
     }
-    return ROW_OF_CARDS_FOR_TABLET;
+    return 2;
   };
 
   const cardsToShowInitial = calculateCardCount();
@@ -153,16 +133,8 @@ const Movies = ({
         isCheckedFilteredMovies={isCheckedFilteredMovies}
       />
       <MoviesCardList
-        filteredMovies={filteredMovies}
-        setFilteredMovies={setFilteredMovies}
-        handleCreateMovie={handleCreateMovie}
-        savedMovies={savedMovies}
-        handleDeleteMovie={handleDeleteMovie}
-        isSearchMovies={isSearchMovies}
         handleShowCards={handleShowCards}
-        isLoading={isLoading}
         visibleCardsCount={visibleCardsCount}
-        isLoadingMovies={isLoadingMovies}
       />
     </main>
   );

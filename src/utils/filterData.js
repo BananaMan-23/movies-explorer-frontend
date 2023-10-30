@@ -1,9 +1,9 @@
-import { LENGTH_OF_SHORTFILMS } from './constants';
+// import { LENGTH_OF_SHORTFILMS } from './constants';
 
 const filterData = (nameRu, nameEN, duration, isChecked, searchQuery) => {
     return (nameRu.toLowerCase().includes(searchQuery.trim().toLowerCase())
         || nameEN.toLowerCase().includes(searchQuery.trim().toLowerCase()))
-        && (isChecked ? duration <= LENGTH_OF_SHORTFILMS : duration);
+        && (isChecked ? duration <= 40 : duration);
 };
 
 export const validateSearch = (isSaveInLocalStorage, searchQuery, searchQueryName, setNameError, setMovies, movies, isChecked, moviesName, errorMovies) => {

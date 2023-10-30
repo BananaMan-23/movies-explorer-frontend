@@ -3,19 +3,12 @@ import { useLocation } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { validateSearch, handleCheckboxChange } from "../../utils/filterData";
+import {useAppContext} from "../../contexts/AppContext";
 
-const SavedMovies = ({
-  savedMovies,
-  setFilteredSavedMovies,
-  handleDeleteMovie,
-  filteredSavedMovies,
-  isSearchSavedMovies,
-  setIsSearchSavedMovies,
-  isLoadingSavedMovies,
-  setIsLoadingSavedMovies,
-  isLoadingMovies,
-}) => {
+const SavedMovies = () => {
   const location = useLocation();
+  const {setIsLoadingSavedMovies, savedMovies, setFilteredSavedMovies, setIsSearchSavedMovies} = useAppContext();
+
   const [searchQuerySavedMovies, setSearchQuerySavedMovies] = useState(
     localStorage.getItem("searchQuerySavedMovies") || ""
   );
@@ -24,17 +17,6 @@ const SavedMovies = ({
   );
   const [nameError, setNameError] = useState("");
   const isSaveInLocalStorage = false;
-
-  // useEffect(() => {
-  //   localStorage.setItem("searchQuerySavedMovies", searchQuerySavedMovies);
-  // }, [searchQuerySavedMovies]);
-
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     "isShortFilmSavedMovies",
-  //     JSON.stringify(isCheckedSavedMovies)
-  //   );
-  // }, [isCheckedSavedMovies]);
 
   const handleSubmitSearchSavedMovies = (e) => {
     e.preventDefault();
@@ -85,15 +67,7 @@ const SavedMovies = ({
         searchQueryFilteredMovies={searchQuerySavedMovies}
         isCheckedFilteredMovies={isCheckedSavedMovies}
       />
-      <MoviesCardList
-        filteredSavedMovies={filteredSavedMovies}
-        savedMovies={savedMovies}
-        handleDeleteMovie={handleDeleteMovie}
-        isSearchSavedMovies={isSearchSavedMovies}
-        isLoadingSavedMovies={isLoadingSavedMovies}
-        setIsLoadingSavedMovies={setIsLoadingSavedMovies}
-        isLoadingMovies={isLoadingMovies}
-      />
+      <MoviesCardList/>
     </main>
   );
 };
