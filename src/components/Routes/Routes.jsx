@@ -1,15 +1,9 @@
 import { Navigate } from "react-router-dom";
-
-export const ProtectedRouteElementForAuthorizedUser = ({
-  isLoggedIn,
-  element,
-}) => {
-  return !isLoggedIn ? element : <Navigate to="/movies" replace />;
-};
+import {useAppContext} from "../../contexts/AppContext";
 
 export const ProtectedRouteElementForUnauthorizedUser = ({
-  isLoggedIn,
   element,
 }) => {
+  const { isLoggedIn } = useAppContext();
   return isLoggedIn ? element : <Navigate to="/" replace />;
 };

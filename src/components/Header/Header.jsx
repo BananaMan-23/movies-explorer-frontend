@@ -2,10 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 import logo from "../../images/pic-logo.svg";
 import Navigation from "../Navigation/Navigation";
+import {useAppContext} from "../../contexts/AppContext";
 
-const Header = ({ isLoggedIn }) => {
+const Header = () => {
   const location = useLocation();
-
+  const { isLoggedIn } = useAppContext();
   return (
     <header
       className={`header ${
@@ -14,7 +15,7 @@ const Header = ({ isLoggedIn }) => {
     >
       <div className="header__container">
         <Link className="header__link header__link_type_logo" to="/">
-          <img className="header__logo" src={logo} alt="logo"></img>
+          <img className="header__logo" src={logo} alt="Логотип"></img>
         </Link>
         {isLoggedIn ? (
           <Navigation />

@@ -2,16 +2,14 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Movies from '../components/Movies/Movies';
 
-function MoviesPage({ isLoggedIn }) {
+const MoviesPage = () => {
     return (
         <>
-            <Header isLoggedIn={isLoggedIn} />
-            <main>
-                <Movies />
-            </main>
+            <Header/>
+            <Movies/>
             <Footer />
         </>
     );
-}
+};
 
 export default MoviesPage;

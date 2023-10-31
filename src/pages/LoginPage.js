@@ -1,11 +1,9 @@
 import Login from '../components/Login/Login';
 
-function LoginPage({ setIsLoggedIn }) {
+const LoginPage = () => {
     return (
-        <main>
-            <Login setIsLoggedIn={setIsLoggedIn} />
-        </main>
+        <Login />
     );
-}
+};
 
 export default LoginPage;

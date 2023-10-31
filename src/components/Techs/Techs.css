@@ -1,5 +1,5 @@
 .techs {
-  background-color: var(--techs-bg-color);
+  background-color: #f5f5f5;
 }
 
 .techs__container {
@@ -16,6 +16,7 @@
   font-size: 22px;
   font-weight: 400;
   line-height: 1.2;
+  letter-spacing: -1px;
 }
 
 .techs__subtitle {
@@ -25,6 +26,7 @@
   font-weight: 400;
   line-height: 1.2;
   align-self: center;
+  letter-spacing: -2px;
 }
 
 .techs__about {
@@ -35,6 +37,7 @@
   max-width: 500px;
   align-self: center;
   text-align: center;
+  letter-spacing: -0.55px;
 }
 
 .techs__list {
@@ -52,7 +55,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
-  background-color: var(--techs-item-bg-color);
+  background-color: #e8e8e8;
   text-align: center;
   border-radius: 10px;
 }

@@ -2,16 +2,14 @@ import SavedMovies from '../components/SavedMovies/SavedMovies';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-function SavedMoviesPage({ isLoggedIn }) {
+const SavedMoviesPage = () => {
     return (
         <>
-            <Header isLoggedIn={isLoggedIn} />
-            <main>
-                <SavedMovies />
-            </main>
+            <Header />
+            <SavedMovies/>
             <Footer />
         </>
     );
-}
+};
 
 export default SavedMoviesPage;

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./AboutMe.css";
-// import photo from "../../images/pic-my.png";
 
 const AboutMe = () => {
   return (
@@ -26,7 +25,6 @@ const AboutMe = () => {
             Github
           </Link>
         </div>
-        {/* <img className="about-me__photo" src={photo} alt="student"></img> */}
       </div>
     </section>
   );

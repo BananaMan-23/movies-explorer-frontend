@@ -1,15 +1,13 @@
 import Header from '../components/Header/Header';
 import Profile from '../components/Profile/Profile';
 
-function ProfilePage({ isLoggedIn, setIsLoggedIn }) {
+const ProfilePage = () => {
     return (
         <>
-            <Header isLoggedIn={isLoggedIn} />
-            <main>
-                <Profile setIsLoggedIn={setIsLoggedIn} />
-            </main>
+            <Header/>
+            <Profile/>
         </>
     );
-}
+};
 
 export default ProfilePage;
